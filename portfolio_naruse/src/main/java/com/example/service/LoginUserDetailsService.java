@@ -22,6 +22,8 @@ public class LoginUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    
+    //新規登録の時に正しく情報が入力されているか確認するメソッド
     @Override
     public UserDetails loadUserByUsername(String loginid) throws UsernameNotFoundException {
         if (loginid == null || "".equals(loginid)) {
@@ -33,6 +35,7 @@ public class LoginUserDetailsService implements UserDetailsService {
         	throw new UsernameNotFoundException("The requested user is not found." + loginid);
         }
         
+        //入力された情報がおかしくなければログインしてもいい権限を与える
         return new LoginUserDetails(account);
     }
     
@@ -45,6 +48,7 @@ public class LoginUserDetailsService implements UserDetailsService {
         return new LoginUserDetails(account);
     }
 
+    //新規作成画面で入力された情報をデータベースに保存するメソッド
     @Transactional
     public void registerUser(String loginid, String name, String pass, String address) {
     	AccountForm accountform = new AccountForm(loginid, name, passwordEncoder.encode(pass), address);
@@ -53,6 +57,7 @@ public class LoginUserDetailsService implements UserDetailsService {
         accountRepository.save(account);
     }
     
+    //客情報を編集する画面で入力された情報をデータベースに上書きするメソッド
     @Transactional
     public void registerUserEdit(Integer id, String loginid, String name, String pass, String address) {
     	AccountEditForm accounteditform = new AccountEditForm(name, address);

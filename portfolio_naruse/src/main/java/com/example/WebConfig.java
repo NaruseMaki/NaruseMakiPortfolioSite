@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
+	//ページ処理をするためのメソッド
 	@Override
 	  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 	      PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();

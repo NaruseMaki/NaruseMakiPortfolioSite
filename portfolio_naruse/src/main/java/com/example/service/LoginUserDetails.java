@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 public class LoginUserDetails extends org.springframework.security.core.userdetails.User {
     private final Account account;
 
+    //ログインしたアカウントに権限を与えているメソッド
     public LoginUserDetails(Account account) {
         super(account.getLoginid(), account.getPass(), AuthorityUtils.createAuthorityList("ROLE_ACCOUNT"));
         this.account = account;

@@ -43,10 +43,12 @@
                     	
                     	<div class="col-sm-10">
                         	<input type="text" id="loginid" name="loginid" th:field="*{loginid}"
-                               class="form-control" value="loginid" placeholder="Loginid" required="required" autofocus="autofocus">
+                               class="form-control" value="loginid" placeholder="メールアドレス" required="required" autofocus="autofocus">
                         	<span th:if="${#fields.hasErrors('loginid')}" th:errors="*{loginid}"
                               class="help-block">ログインIDの入力に不備があります</span>
                     	</div>
+                    	
+                    	<span>(半角英数字5~30文字以内)</span>
 					</div>
 		
 					<div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error has-feedback'">
@@ -54,7 +56,7 @@
                     	
                     	<div class="col-sm-10">
                         	<input type="text" id="name" name="name" th:field="*{name}"
-                               class="form-control" value="name" placeholder="name" required="required" autofocus="autofocus">
+                               class="form-control" value="name" placeholder="名前" required="required" autofocus="autofocus">
                         	<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
                               class="help-block">名前の入力に不備があります</span>
                     	</div>
@@ -65,10 +67,12 @@
                     	
                     	<div class="col-sm-10">
                         	<input type="password" id="pass" name="pass" th:field="*{pass}"
-                               class="form-control" value="pass" placeholder="pass" required="required" autofocus="autofocus">
+                               class="form-control" value="pass" placeholder="パスワード" required="required" autofocus="autofocus">
                         	<span th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"
                               class="help-block">パスワードの入力に不備があります</span>
                     	</div>
+                    	
+                    	<span>(半角英数字5~30文字以内)</span>
 					</div>
 					
 					<div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error has-feedback'">
@@ -76,7 +80,7 @@
                     	
                     	<div class="col-sm-10">
                         	<input type="text" id="address" name="address" th:field="*{address}"
-                               class="form-control" value="address" placeholder="address" required="required" autofocus="autofocus">
+                               class="form-control" value="address" placeholder="住所" required="required" autofocus="autofocus">
                         	<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
                               class="help-block">住所の入力に不備があります</span>
                     	</div>
