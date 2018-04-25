@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="ja">
+    <meta charset="UTF-8">
+    <title>サンプル</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+</head>
+
+<body>
+	<!-- コンテナ開始 -->
+	<div class="container">
+	
+		<!-- ヘッダー部(navbar) -->
+		<div class="row">
+    		<nav class="navbar navbar-inverse navbar-fixed-top">
+    	
+           		<div class="navbar-header">
+           			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+      					<span class="sr-only">メニュー</span>
+      					<span class="icon-bar"></span>
+      					<span class="icon-bar"></span>
+      					<span class="icon-bar"></span>
+    				</button>
+       				<a th:href="@{/shopping}" class="navbar-brand" style="font-size: 28px;">ショッピングサイト</a>
+           			<span class="navbar-brand" style="font-size: 10px;">　ログイン中 ようこそ、<span sec:authentication="principal.account.name">duke</span> さん！</span>
+       			</div>
+       		
+       			<div id="gnavi" class="collapse navbar-collapse">
+       				<ul class="nav navbar-nav">
+       					<li class="active">
+           					<form class="navbar-form" th:action="@{/shopping/goToTop}" method="get">
+           					<input type="submit" class="btn btn-default btn-xl" value="TOPへ">
+           					</form>
+           				</li>
+           				<li>
+           					<form class="navbar-form" th:action="@{/shopping/cart}" method="get">
+           					<input type="submit" class="btn btn-default btn-xl" value="カート">
+           					</form>
+           				</li>
+           				<li>
+      						<form class="navbar-form" th:action="@{/logout}" method="post">
+               				<input type="submit" class="btn btn-danger btn-xl" value="ログアウト">
+           					</form>
+           				</li>
+       				</ul>
+       			</div>
+       		
+   			</nav>
+   		<!-- ヘッダー部(navbar)終了 -->
+   		</div>
+   		
+   		
+   		<!-- メインカラム開始 -->
+		<div class="row" style="padding:70px 0 0 0">
+		
+			<!-- メイン開始 -->
+			<div id="contents" class="col-md-12">
+				<div class="page-header" style="margin-top:-15px;padding-bottom:0px;">
+					<h1><small>送付先情報確認</small></h1>
+				</div>
+				
+				<!-- 列開始 -->
+				<div class="row">
+                
+                	<!-- ここからお客さんの情報 -->
+                	<div th:unless="${anyNumber &lt;= 0}">	<!-- カートに商品が入っているか確認 -->
+                	
+                		<h3>氏名　：　<span th:text="${myaccount.name}"></span>　様</h3>
+                		<h3>送付先：　<span th:text="${myaccount.address}"></span></h3><br>
+                		
+                		<div  class="text-center">
+                			<p><form  th:action="@{/shopping/accountedit}" method="get">
+                				<input type="submit" value="お客様情報を編集する" class="btn btn-l btn-default btn-block">
+                			</form><p>
+                			<p><form  th:action="@{/shopping/result}" method="post">
+                				<input type="submit" value="購入する" class="btn btn-l btn-warning btn-block">
+                			</form><p>
+                		</div><br>
+                		
+					<!-- ここまでお客さんの情報 -->
+					</div>
+					
+					<!-- カートに商品が入ってなければここを表示する -->
+					<div th:if="${anyNumber &lt;= 0}">カートに商品はありません。お買い物を楽しみましょう！</div>
+					
+				<!-- 列終了 -->
+				</div>
+
+			<!-- メイン終了 -->
+			</div>
+			
+		<!-- メインカラム終了 -->
+		</div>
+	
+	<!-- コンテナ終了 -->
+	</div>
+
+	<hr class="clear">
+	<!-- footer -->
+	<div id="footer" class="text-center">copy left everything free.</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+        th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

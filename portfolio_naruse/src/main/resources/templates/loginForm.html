@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="ja">
+    <meta charset="utf-8">
+    <title>サンプル</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+</head>
+
+<body>
+	<!-- コンテナ開始 -->
+	<div class="container">
+		<!-- ヘッダー部(navbar) -->
+		<div class="row">
+    		<nav class="navbar navbar-inverse navbar-fixed-top">
+           		<div class="navbar-header">
+           			<div style="padding:0px 30px 0 0">
+           			<ul class="navbar-toggle navbar-nav" data-toggle="collapse" data-target="#gnavi">
+       					<li>
+           					<a th:href="@{/accountcreate}" style="text-decoration: none;">新規登録</a>
+           				</li>
+    				</ul>
+    				</div>
+    				
+       				<a th:href="@{/shopping}" class="navbar-brand" style="font-size: 28px;">ショッピングサイト</a>
+       			</div>
+       			
+       			<div id="gnavi" class="collapse navbar-collapse">
+       				<ul class="nav navbar-nav">
+       					<li class="active">
+           					<a th:href="@{/accountcreate}">新規登録</a>
+           				</li>
+       				</ul>
+       			</div>
+   			</nav>
+   		<!-- ヘッダー部(navbar)終了 -->
+   		</div>
+
+		<!-- メインカラム開始 -->
+		<div class="row" style="padding:100px 0 0 0">
+			<!-- メイン開始 -->
+			<div id="contents" class="col-md-12">
+				<div class="page-header" style="margin-top:-15px;padding-bottom:0px;">
+        			<h2 class="form-signin-heading">ログインフォーム</h2>
+				</div>
+				
+				<form class="form-signin" method="post" th:action="@{/login}">
+        			<div th:if="${param.error}" class="alert alert-danger">
+            			ログインIDまたはパスワードが正しくありません。
+        			</div>
+       				<input type="text" class="form-control" name="loginid" placeholder="Loginid" required="required" autofocus="autofocus"><br>
+       				<input type="password" class="form-control" name="pass" placeholder="Pass" required="required"><br>
+       				<p><button class="btn btn-lg btn-primary btn-block" type="submit">サインイン</button></p>
+   				</form>
+    		<!-- メイン終了 -->
+			</div>
+		<!-- メインカラム終了 -->
+		</div>
+		
+	<!-- コンテナ終了 -->
+	</div>
+	
+	<hr class="clear">
+	<!-- footer -->
+	<div id="footer" class="text-center">copy left everything free.</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+        th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
